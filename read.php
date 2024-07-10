@@ -1,8 +1,7 @@
 <?php
 // Load existing users from JSON file
 $users = json_decode(file_get_contents('users.json'), true);
-var_dump($users);
-die();
+
 // Check if decoding was successful
 if ($users === null) {
     echo "Error decoding JSON file.";
