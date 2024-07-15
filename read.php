@@ -1,14 +1,12 @@
 <?php
-// Load existing users from JSON file
+// JSON faylidan mavjud foydalanuvchilarni yuklash
 $users = json_decode(file_get_contents('users.json'), true);
-
-// Check if decoding was successful
+// Dekodlash muvaffaqiyatli bo'lganligini tekshirish
 if ($users === null) {
     echo "Error decoding JSON file.";
     exit;
 }
-
-// Display each user with edit and delete links
+// Har bir foydalanuvchini tahrirlash va oʻchirish link-i bilan koʻrsating
 foreach ($users as $user) {
     echo "<li>{$user['username']} ";
     echo "<a href='edit.php?id={$user['id']}'>Edit</a> ";

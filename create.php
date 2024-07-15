@@ -1,17 +1,13 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
-
-    // Load existing users from JSON file
+    // JSON faylidan mavjud foydalanuvchilarni olamiz
     $users = json_decode(file_get_contents('users.json'), true);
-
-    // Add new user
+    // yangi user qoshish
     $users[] = ['id' => uniqid(), 'username' => $username];
-
-    // Save updated user list back to JSON file
+    // Yangilangan foydalanuvchilar roʻyxatini yana JSON fayliga saqlimiza
     file_put_contents('users.json', json_encode($users, JSON_PRETTY_PRINT));
-
-    // Redirect back to index.php
+    // index.php ga qaytish
     header('Location: index.php');
     exit;
 }

@@ -2,22 +2,18 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $newUsername = $_POST['username'];
-
-    // Load existing users from JSON file
+    // JSON faylidan mavjud foydalanuvchilarni olamiz 
     $users = json_decode(file_get_contents('users.json'), true);
-
-    // Find user by ID and update username
+    // ID bo'yicha foydalanuvchini topamiz va foydalanuvchi username-ini yangilimiz
     foreach ($users as $key => $user) {
         if ($user['id'] === $id) {
             $users[$key]['username'] = $newUsername;
             break;
         }
     }
-
-    // Save updated user list back to JSON file
+    // Yangilangan foydalanuvchilar roʻyxatini yana JSON fayliga saqlimiza 
     file_put_contents('users.json', json_encode($users, JSON_PRETTY_PRINT));
-
-    // Redirect back to index.php
+    // index.php ga qaytamiz 
     header('Location: index.php');
     exit;
 }

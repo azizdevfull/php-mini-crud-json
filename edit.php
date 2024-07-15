@@ -9,21 +9,18 @@
 
 <body>
     <h2>Edit User</h2>
-
     <?php
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $users = json_decode(file_get_contents('users.json'), true);
         $user = null;
-
-        // Find user by ID
+        // user-ni id orqali topish
         foreach ($users as $u) {
             if ($u['id'] === $id) {
                 $user = $u;
                 break;
             }
         }
-
         if ($user) {
             echo '<form action="update.php" method="POST">';
             echo '<input type="hidden" name="id" value="' . $user['id'] . '">';
@@ -38,7 +35,6 @@
         echo '<p>Invalid request.</p>';
     }
     ?>
-
     <a href="index.php">Back to User List</a>
 </body>
 
